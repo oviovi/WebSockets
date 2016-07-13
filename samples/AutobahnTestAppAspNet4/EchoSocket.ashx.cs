@@ -13,6 +13,7 @@ namespace AutobahnTestAppAspNet4
     /// </summary>
     public class EchoSocket : IHttpHandler
     {
+        public bool IsReusable => false;
 
         public void ProcessRequest(HttpContext context)
         {
@@ -32,7 +33,7 @@ namespace AutobahnTestAppAspNet4
 
         private async Task Echo(WebSocket webSocket)
         {
-            byte[] buffer = new byte[1024 * 4];
+            var buffer = new byte[1024 * 4];
             var result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
             while (!result.CloseStatus.HasValue)
             {
@@ -40,14 +41,6 @@ namespace AutobahnTestAppAspNet4
                 result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
             }
             await webSocket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
-        }
-
-        public bool IsReusable
-        {
-            get
-            {
-                return false;
-            }
         }
     }
 }
