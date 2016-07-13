@@ -38,8 +38,13 @@ namespace Microsoft.AspNetCore.WebSockets.Server.Test
                 await tester.DeployTestAndAddToSpec(ServerType.Kestrel, ssl: false, environment: "ManagedSockets", expectationConfig: expect => expect
                     .NonStrict("6.4.3", "6.4.4")); // https://github.com/aspnet/WebSockets/issues/99
 
-                await tester.DeployTestAndAddToSpec(ServerType.Kestrel, ssl: true, environment: "ManagedSockets", expectationConfig: expect => expect
-                    .NonStrict("6.4.3", "6.4.4")); // https://github.com/aspnet/WebSockets/issues/99
+                // Mac + SSL + Untrusted certs == Sadness
+                // The macOS version of HttpClient uses Mac's libcurl which doesn't use OpenSSL and doesn't support custom cert validation.
+                if (!RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+                    await tester.DeployTestAndAddToSpec(ServerType.Kestrel, ssl: true, environment: "ManagedSockets", expectationConfig: expect => expect
+                        .NonStrict("6.4.3", "6.4.4")); // https://github.com/aspnet/WebSockets/issues/99
+                }
 
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {

@@ -108,10 +108,14 @@ namespace Microsoft.AspNetCore.WebSockets.Server.Test.Autobahn
             System.Net.ServicePointManager.ServerCertificateValidationCallback = (_, __, ___, ____) => true;
             var client = new HttpClient();
 #else
-            var handler = new HttpClientHandler()
+            var handler = new HttpClientHandler();
+            if (ssl)
             {
-                ServerCertificateCustomValidationCallback = (_, __, ___, ____) => true
-            };
+                // Don't take this out of the "if(ssl)". If we set it on some platforms, it crashes
+                // So we avoid running SSL tests on those platforms (for now).
+                // See https://github.com/dotnet/corefx/issues/9728
+                handler.ServerCertificateCustomValidationCallback = (_, __, ___, ____) => true;
+            }
             var client = new HttpClient(handler);
 #endif
 
