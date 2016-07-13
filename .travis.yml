@@ -20,8 +20,11 @@ install:
   - make install
   - export LD_LIBRARY_PATH="$HOME/libuvinstall/lib"
   - cd $OLDPWD
+  - pip install autobahntestsuite
 mono:
   - 4.0.5
+python:
+  - "2.7"
 os:
   - linux
   - osx
