@@ -12,7 +12,7 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "ManagedSockets"
       }
     },
     "AutobahnTestApp": {
@@ -20,7 +20,7 @@
       "launchBrowser": true,
       "launchUrl": "http://localhost:5000",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "ManagedSockets"
       }
     },
     "AutobahnTestApp (SSL)": {
@@ -28,7 +28,14 @@
       "launchBrowser": true,
       "launchUrl": "https://localhost:5443",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "ManagedSockets"
+      }
+    },
+    "WebListener": {
+      "commandName": "Project",
+      "commandLineArgs": "--server Microsoft.AspNetCore.Server.WebListener",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "ManagedSockets"
       }
     }
   }

@@ -13,13 +13,12 @@ namespace AutobahnTestApp
                 .AddCommandLine(args)
                 .Build();
 
-            var certPath = Path.Combine(AppContext.BaseDirectory, "TestResources", "testCert.pfx");
-
             var builder = new WebHostBuilder()
                 .UseConfiguration(config)
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>();
+
             if (string.Equals(builder.GetSetting("server"), "Microsoft.AspNetCore.Server.WebListener", System.StringComparison.Ordinal))
             {
                 builder.UseWebListener();
@@ -28,6 +27,7 @@ namespace AutobahnTestApp
             {
                 builder.UseKestrel(options =>
                 {
+                    var certPath = Path.Combine(AppContext.BaseDirectory, "TestResources", "testCert.pfx");
                     options.UseHttps(certPath, "testPassword");
                 });
             }

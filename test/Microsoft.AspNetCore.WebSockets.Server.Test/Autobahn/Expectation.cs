@@ -1,4 +1,4 @@
-﻿namespace Autobahn
+﻿namespace Microsoft.AspNetCore.WebSockets.Server.Test.Autobahn
 {
     public enum Expectation
     {
