@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Autobahn;
 using Microsoft.AspNetCore.Server.Testing;
 
 namespace Microsoft.AspNetCore.WebSockets.Server.Test.Autobahn
