@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Testing.xunit;
 using Microsoft.AspNetCore.WebSockets.Server.Test.Autobahn;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
-using Xunit;
 
 namespace Microsoft.AspNetCore.WebSockets.Server.Test
 {
@@ -85,7 +84,7 @@ namespace Microsoft.AspNetCore.WebSockets.Server.Test
             {
                 var versionStr = RuntimeInformation.OSDescription.Substring(VersionOffset);
                 Version version;
-                if(Version.TryParse(versionStr, out version))
+                if (Version.TryParse(versionStr, out version))
                 {
                     return version.Major > 6 || (version.Major == 6 && version.Minor >= 2);
                 }
