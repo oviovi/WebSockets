@@ -27,7 +27,7 @@ namespace Microsoft.AspNetCore.WebSockets.Server.Test.Autobahn
 
         public AutobahnExpectations Expect(Expectation expectation, params string[] caseSpecs)
         {
-            foreach(var caseSpec in caseSpecs)
+            foreach (var caseSpec in caseSpecs)
             {
                 _expectations[caseSpec] = expectation;
             }
@@ -36,7 +36,7 @@ namespace Microsoft.AspNetCore.WebSockets.Server.Test.Autobahn
 
         internal void Verify(AutobahnServerResult serverResult, StringBuilder failures)
         {
-            foreach(var caseResult in serverResult.Cases)
+            foreach (var caseResult in serverResult.Cases)
             {
                 // If this is an informational test result, we can't compare it to anything
                 if (!string.Equals(caseResult.ActualBehavior, "INFORMATIONAL", StringComparison.Ordinal))
@@ -50,7 +50,7 @@ namespace Microsoft.AspNetCore.WebSockets.Server.Test.Autobahn
                     switch (expectation)
                     {
                         case Expectation.Fail:
-                            if(!caseResult.BehaviorIs("FAILED"))
+                            if (!caseResult.BehaviorIs("FAILED"))
                             {
                                 failures.AppendLine($"Case {serverResult.Name}:{caseResult.Name}. Expected 'FAILED', but got '{caseResult.ActualBehavior}'");
                             }
@@ -62,7 +62,7 @@ namespace Microsoft.AspNetCore.WebSockets.Server.Test.Autobahn
                             }
                             break;
                         case Expectation.Ok:
-                            if(!caseResult.BehaviorIs("OK"))
+                            if (!caseResult.BehaviorIs("OK"))
                             {
                                 failures.AppendLine($"Case {serverResult.Name}:{caseResult.Name}. Expected 'OK', but got '{caseResult.ActualBehavior}'");
                             }

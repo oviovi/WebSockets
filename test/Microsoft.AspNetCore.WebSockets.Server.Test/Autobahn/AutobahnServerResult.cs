@@ -19,7 +19,7 @@ namespace Microsoft.AspNetCore.WebSockets.Server.Test.Autobahn
             Name = name;
 
             var splat = name.Split('|');
-            if(splat.Length < 3)
+            if (splat.Length < 3)
             {
                 throw new FormatException("Results incorrectly formatted");
             }

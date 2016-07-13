@@ -67,10 +67,10 @@ namespace Microsoft.AspNetCore.WebSockets.Server.Test.Autobahn
         public void Verify(AutobahnResult result)
         {
             var failures = new StringBuilder();
-            foreach(var serverResult in result.Servers)
+            foreach (var serverResult in result.Servers)
             {
                 var serverExpectation = _expectations.FirstOrDefault(e => e.Server == serverResult.Server && e.Ssl == serverResult.Ssl);
-                if(serverExpectation == null)
+                if (serverExpectation == null)
                 {
                     failures.AppendLine($"Expected no results for server: {serverResult.Name} but found results!");
                 }
