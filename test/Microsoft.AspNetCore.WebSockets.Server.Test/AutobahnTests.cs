@@ -70,7 +70,6 @@ namespace Microsoft.AspNetCore.WebSockets.Server.Test
                 //await tester.DeployTestAndAddToSpec(ServerType.WebListener, ssl: false, environment: "NativeSockets");
 
                 result = await tester.Run();
-
                 tester.Verify(result);
             }
         }
