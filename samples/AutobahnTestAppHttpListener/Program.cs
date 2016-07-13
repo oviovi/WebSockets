@@ -10,6 +10,7 @@ namespace AutobahnTestAppHttpListener
 {
     class Program
     {
+        // This app only works on Windows 8+
         static int Main(string[] args)
         {
             using (var listener = StartListener())

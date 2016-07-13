@@ -24,6 +24,7 @@ namespace Microsoft.AspNetCore.WebSockets.Server.Test.Autobahn
         public AutobahnSpec Spec { get; }
 
         public AutobahnTester(ILoggerFactory loggerFactory, AutobahnSpec baseSpec) : this(7000, loggerFactory, baseSpec) { }
+
         public AutobahnTester(int startPort, ILoggerFactory loggerFactory, AutobahnSpec baseSpec)
         {
             _nextPort = startPort;
@@ -130,7 +131,6 @@ namespace Microsoft.AspNetCore.WebSockets.Server.Test.Autobahn
             var expectations = new AutobahnExpectations(server, ssl, environment);
             expectationConfig?.Invoke(expectations);
             _expectations.Add(expectations);
-
         }
 
         public void Dispose()
